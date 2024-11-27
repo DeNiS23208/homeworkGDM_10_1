@@ -1,6 +1,6 @@
 # def get_mask_card_number(num_card: str) -> str:
-#     """Функция принимает на вход тип карты, номер карты и возвращает её в виде маски
-#     в формате XXXX XX** **** XXXX"""
+#     """Функция принимает на вход тип карты, номер карты и
+#     возвращает её в виде маски в формате XXXX XX** **** XXXX"""
 #     list_card = []
 #     for i in num_card:
 #         list_card.append(i)
@@ -9,9 +9,9 @@
 #     if ''.join(name_type_card) == 'Счет':
 #         print(''.join(name_type_card) + ' **' + num_card[-4:])
 #     elif ''.join(name_type_card) == 'Maestro':
-#         print(''.join(name_type_card) + num_card[one_space:one_space + 5] + ' ' + num_card[
-#                                                                                   one_space + 5:one_space + 7] + '** ****' + num_card[
-#                                                                                                                              -4:])
+#         print(''.join(name_type_card) +
+#                                    num_card[one_space:one_space + 5] + ' ' + num_card[
+#                               one_space + 5:one_space + 7] + '** ****' + num_card[#                                                                                                                              -4:])
 #     elif ''.join(name_type_card) == 'Visa':
 #         print(''.join(name_type_card) + num_card[one_space:one_space + 9] + num_card[
 #                                                                             one_space + 9:one_space + 14] + ' ' + num_card[
