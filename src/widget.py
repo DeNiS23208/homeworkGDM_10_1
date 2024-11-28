@@ -1,20 +1,26 @@
-from src.masks import get_mask_card_number, get_mask_account
-
-"""Функция которая умеет обрабатывать информацию как о картах, так и о счетах"""
+from typing import Tuple
 
 
-def mask_account_card(card_info: str) -> str:
-    one_space = card_info.index(" ")
-    if card_info[:one_space] == "Maestro":
-        return card_info[:one_space] + get_mask_card_number(card_info[one_space:])
-    elif card_info[:one_space] == "Visa":
-        return card_info[: one_space + 9] + get_mask_card_number(card_info[one_space + 9 :])
-    elif card_info[:one_space] == "Счет":
-        return card_info[:one_space] + " " + get_mask_account(card_info[one_space:])
+def separate_digits_and_letters(input_string: str) -> Tuple[str, str]:
+    """Функция которая умеет обрабатывать информацию как о картах, так и о счетах"""
+    digits = ""
+    letters = ""
+    for char in input_string:
+        if char.isdigit():
+            digits += char
+        elif char.isalpha():
+            letters += char
+
+    if len(digits) == 16:
+        return letters, digits[:6] + "** ****" + digits[-4:]
+    elif len(digits) == 20:
+        return letters, "**" + digits[-4:]
     else:
-        return "Нет такого типа карты"
+        return letters, digits
 
 
 def get_data(data: str) -> str:
     date_str = data.split("T")[0]
-    return date_str
+    year, month, day = date_str.split("-")
+    formatted_date = f"{day}.{month}.{year}"
+    return formatted_date
