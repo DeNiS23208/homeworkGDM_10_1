@@ -1,7 +1,7 @@
 from typing import Tuple
 
 
-def separate_digits_and_letters(input_string: str) -> Tuple[str, str]:
+def mask_account_card(input_string: str) -> Tuple[str, str]:
     """Функция которая умеет обрабатывать информацию как о картах, так и о счетах"""
     digits = ""
     letters = ""
