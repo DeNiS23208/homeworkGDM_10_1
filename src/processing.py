@@ -20,9 +20,10 @@ def filter_by_state(find_state: List[Dict[str, Any]], state: str = "EXECUTED") -
 
 def sort_by_date(sort_data: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
     """Функция должна возвращать новый список, отсортированный по дате (date)."""
-
+    for find_date in sort_data:
+        if "date" not in find_date:
+            raise ValueError('Даты не существует')
     sorted_date = sorted(sort_data, key=lambda x: x["date"], reverse=reverse)
-
     return sorted_date
 
 
