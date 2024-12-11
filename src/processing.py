@@ -4,10 +4,9 @@
 def filter_by_state(find_state: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """Функция возвращает новый список словарей,
     содержащий только те словари, у которых ключ state соответствует указанному значению."""
-    kol = 0
     for find in find_state:
         if find["state"] != "EXECUTED" and find["state"] != "CANCELED":
-            raise ValueError('Данные отсутствуют')
+            raise ValueError("Данные отсутствуют")
 
     result_filter_state = []
 
@@ -22,7 +21,7 @@ def sort_by_date(sort_data: List[Dict[str, Any]], reverse: bool = True) -> List[
     """Функция должна возвращать новый список, отсортированный по дате (date)."""
     for find_date in sort_data:
         if "date" not in find_date:
-            raise ValueError('Даты не существует')
+            raise ValueError("Даты не существует")
     sorted_date = sorted(sort_data, key=lambda x: x["date"], reverse=reverse)
     return sorted_date
 
