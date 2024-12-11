@@ -14,7 +14,7 @@ def num_invalid_number_card():
 
 @pytest.fixture
 def num_account():
-    return ['1234567812345678', '8765432187654321']
+    return ['12345678123456781234', '87654321876543211234']
 
 
 @pytest.fixture
