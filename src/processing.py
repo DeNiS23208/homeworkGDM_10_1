@@ -4,6 +4,10 @@
 def filter_by_state(find_state: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """Функция возвращает новый список словарей,
     содержащий только те словари, у которых ключ state соответствует указанному значению."""
+    kol = 0
+    for find in find_state:
+        if find["state"] != "EXECUTED" and find["state"] != "CANCELED":
+            raise ValueError('Данные отсутствуют')
 
     result_filter_state = []
 
