@@ -5,7 +5,7 @@ from typing import Any, Dict, Generator, List
 
 
 def filter_by_currency(
-        transactions: List[Dict[str, Any]], currency: str = "USD"
+    transactions: List[Dict[str, Any]], currency: str = "USD"
 ) -> Generator[Dict[str, Any], None, None]:
     if not transactions:
         raise ValueError("Список словаря пуст")
@@ -19,7 +19,7 @@ def filter_by_currency(
 
 def transaction_descriptions(transactions: List[Dict]) -> Generator[str]:
     if not transactions:
-        raise ValueError('Список словаря пуст')
+        raise ValueError("Список словаря пуст")
     result_descriptions = [transaction["description"] for transaction in transactions]
     for item in result_descriptions:
         yield item
@@ -32,8 +32,8 @@ def transaction_descriptions(transactions: List[Dict]) -> Generator[str]:
 def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
     for number in range(start, end + 1):
         yield f"{number:016}"[:4] + " " + f"{number:016}"[4:8] + " " + f"{number:016}"[8:12] + " " + f"{number:016}"[
-                                                                                                     12:16
-                                                                                                     ]
+            12:16
+        ]
 
 
 # start_number = 1
