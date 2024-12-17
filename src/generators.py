@@ -12,6 +12,12 @@ def filter_by_currency(
         yield item
 
 
+def transaction_descriptions(transactions: List[Dict]) -> Generator[str]:
+    result_descriptions = [transaction["description"] for transaction in transactions]
+    for item in result_descriptions:
+        yield item
+
+
 transactions = [
     {
         "id": 939719570,
@@ -62,3 +68,7 @@ transactions = [
 transaction = filter_by_currency(transactions, currency="USD")
 print(next(transaction))
 print(next(transaction))
+
+description = transaction_descriptions(transactions)
+for i in range(5):
+    print(next(description))
