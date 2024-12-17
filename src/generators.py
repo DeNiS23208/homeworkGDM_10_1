@@ -5,18 +5,41 @@ from typing import Any, Dict, Generator, List
 
 
 def filter_by_currency(
-    transactions: List[Dict[str, Any]], currency: str = "USD"
+        transactions: List[Dict[str, Any]], currency: str = "USD"
 ) -> Generator[Dict[str, Any], None, None]:
+    if not transactions:
+        raise ValueError("Список словаря пуст")
     result_currency = filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, transactions)
     for item in result_currency:
         yield item
 
 
+"""Генератор transaction_descriptions, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
+
+
 def transaction_descriptions(transactions: List[Dict]) -> Generator[str]:
+    if not transactions:
+        raise ValueError('Список словаря пуст')
     result_descriptions = [transaction["description"] for transaction in transactions]
     for item in result_descriptions:
         yield item
 
+
+"""Генератор card_number_generator, который выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X
+ — цифра номера карты. Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999."""
+
+
+def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
+    for number in range(start, end + 1):
+        yield f"{number:016}"[:4] + " " + f"{number:016}"[4:8] + " " + f"{number:016}"[8:12] + " " + f"{number:016}"[
+                                                                                                     12:16
+                                                                                                     ]
+
+
+# start_number = 1
+# end_number = 100
+# for card_number in card_number_generator(1, 5):
+#     print(card_number)
 
 transactions = [
     {
@@ -65,10 +88,10 @@ transactions = [
         "to": "Счет 14211924144426031657",
     },
 ]
-transaction = filter_by_currency(transactions, currency="USD")
-print(next(transaction))
-print(next(transaction))
-
+# transaction = filter_by_currency(transactions, currency="USD")
+# print(next(transaction))
+# print(next(transaction))
+#
 description = transaction_descriptions(transactions)
 for i in range(5):
     print(next(description))
